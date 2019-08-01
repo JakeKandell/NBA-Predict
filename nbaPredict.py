@@ -1,9 +1,5 @@
-# todo Import Necessary stats
-# todo Determine weighting of stats
-# todo Figure out ELO/Rating system
-# todo Determine games on current day
-# todo Come up with predicted score/point spread/probability?
-# I had 70.15% accuracy in 2018-19
+# nbaPredict.py - Predicts results of NBA games on a specified date
+# Call makeInterpretPrediction with current date, season, and start date of season to run predictions
 
 import os
 import pickle
@@ -15,8 +11,8 @@ from availableStats import availableStats
 from createModel import zScoreDifferential
 from getStats import getStatsForTeam
 
-# Change current working directory to wherever the model is saved
-os.chdir('/Users/JakeKandell/PycharmProjects/NBA Prediction Program/SavedModels/')
+# CHANGE CURRENT WORKING DIRECTORY HERE TO WHEREVER THE MODEL IS SAVED
+os.chdir('/Users/JakeKandell/Desktop/NBA-Predict/SavedModels/')
 
 
 # Returns list of games with Z-Score differentials between teams to be put into a Pandas dataframe
@@ -36,7 +32,6 @@ def dailyGamesDataFrame(dailyGames, meanDict, standardDeviationDict, startDate, 
             zScoreDif = zScoreDifferential(homeTeamStats[stat], awayTeamStats[stat], meanDict[stat], standardDeviationDict[stat])
             currentGame.append(zScoreDif)
 
-        print(currentGame)
         fullDataFrame.append(currentGame)  # Adds this list to list of all games on specified date
 
     return(fullDataFrame)
@@ -46,9 +41,7 @@ def dailyGamesDataFrame(dailyGames, meanDict, standardDeviationDict, startDate, 
 # Index 0 is the dailyGames in dict form {Home:Away}
 # Index 1 is a list with the prediction probabilities for each game [[lossProb, winProb]]
 # currentDate should be in form 'mm/dd/yyyy' and season in form 'yyyy-yy'
-def predictDailyGames(currentDate, season):
-
-    startOfSeason = '10/16/2018'  # Should be changed if season starts on different date
+def predictDailyGames(currentDate, season, startOfSeason):
 
     dailyGames = dailyMatchups(currentDate, season, False)  # False because games should be on current date not in past
     meanDict, standardDeviationDict = createMeanStandardDeviationDicts(startOfSeason, currentDate)
@@ -90,11 +83,12 @@ def interpretPredictions(gamesWithPredictions):
 
 
 # Fetches games on set date and returns predictions for each game
-# currentDate should be in form 'mm/dd/yyyy' and season in form 'yyyy-yy'
-def makeInterpretPredictions(currentDate, season):
+# currentDate/startOfSeason should be in form 'mm/dd/yyyy' and season in form 'yyyy-yy'
+# Start of 2018-19 season was 10/16/2018
+def makeInterpretPredictions(currentDate, season, startOfSeason):
 
-    predictions = predictDailyGames(currentDate, season)
+    predictions = predictDailyGames(currentDate, season, startOfSeason)
     interpretPredictions(predictions)
 
-makeInterpretPredictions('02/08/2019', '2018-19')
 
+makeInterpretPredictions('01/28/2019', '2018-19', '10/16/2018')
