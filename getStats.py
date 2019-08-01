@@ -40,7 +40,7 @@ def getStatsForTeam(team, startDate, endDate):
         'DEF_RATING': defensiveRating,
         'TS_PCT':trueShootingPercentage,
     }
-    print(allStats)
+
     return allStats
 
 
