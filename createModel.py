@@ -1,5 +1,6 @@
 # createModel.py - Used to train, test, and create the model
-# Model got 235/335 games correct for 70.15% accuracy
+# Call createModel() to generate a new model
+# May need to edit which lines are commented out based on what range of game data you would like to use
 
 from standardizeStats import basicOrAdvancedStatZScore, basicOrAdvancedStatStandardDeviation, basicOrAdvancedStatMean
 from getDailyMatchups import dailyMatchups
@@ -135,8 +136,7 @@ def performLogReg(dataframe):
     X = dataframe[featureColumns] # Features
     Y = dataframe.Result  # Target Variable
 
-    X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.33, shuffle=True)  # Uses 33% of games to test on
-
+    X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.33, shuffle=True)
     logreg = LogisticRegression()
 
     logreg.fit(X_train, Y_train)  # Fits model with data
@@ -160,7 +160,7 @@ def performLogReg(dataframe):
 def saveModel(model):
 
     # Change to where you want to save the model
-    os.chdir('/Users/JakeKandell/PycharmProjects/NBA Prediction Program/SavedModels/')
+    os.chdir('/Users/JakeKandell/Desktop/NBA-Predict/SavedModels/')
 
     filename = 'abc.pkl'
     with open(filename, 'wb') as file:
@@ -171,22 +171,11 @@ def createModel(startYear=None, startMonth=None, startDay=None, endYear=None, en
 
     # allGames = getTrainingSet(startYear, startMonth, startDay, endYear, endMonth, endDay)  # Unnecessary if using data from CSV file
 
-    # allGamesDataframe = createDataFrame(allGames)  # Unnecessary if using data from csv file
+    # allGamesDataframe = createDataFrame(allGames)  # Unnecessary if using data from CSV file
 
-    allGamesDataframe = pd.read_csv('/Users/JakeKandell/PycharmProjects/NBA Prediction Program/SavedModels/games.csv')  # Unnecessary if needing to obtain game data
+    allGamesDataframe = pd.read_csv('/Users/JakeKandell/Desktop/NBA-Predict/SavedModels/games.csv')  # Should be commented out if needing to obtain data on different range of games
 
     logRegModel = performLogReg(allGamesDataframe)
 
     saveModel(logRegModel)
-
-
-# 14Model:
-#[[ 82  53]
- #[ 37 163]]
-#Accuracy: 0.7313432835820896
-#Precision: 0.7546296296296297
-#Recall: 0.815
-#['W_PCT', 'REB', 'TOV', 'PLUS_MINUS', 'OFF_RATING', 'DEF_RATING', 'TS_PCT']
-#[[ 0.77957387 -0.03516455  0.09360531 -0.0203243   0.0550886   0.04548995
- # -0.05704127]]
 
