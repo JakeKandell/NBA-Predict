@@ -1,2 +1,2 @@
 # NBA-Predict
-Predicts daily NBA games using a logistic regression model 
+Predicts Daily NBA Games Using a Logistic Regression Model
