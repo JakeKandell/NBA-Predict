@@ -173,7 +173,7 @@ def createModel(startYear=None, startMonth=None, startDay=None, endYear=None, en
 
     # allGamesDataframe = createDataFrame(allGames)  # Unnecessary if using data from CSV file
 
-    allGamesDataframe = pd.read_csv('/Users/JakeKandell/Desktop/NBA-Predict/SavedModels/games.csv')  # Should be commented out if needing to obtain data on different range of games
+    allGamesDataframe = pd.read_csv('/Users/JakeKandell/Desktop/NBA-Predict/Data/games.csv')  # Should be commented out if needing to obtain data on different range of games
 
     logRegModel = performLogReg(allGamesDataframe)
 
