@@ -87,6 +87,7 @@ def interpretPredictions(gamesWithPredictions):
 # Start of 2018-19 season was 10/16/2018
 def makeInterpretPredictions(currentDate, season, startOfSeason):
 
+    print('Predictions for ' + currentDate + ':')
     predictions = predictDailyGames(currentDate, season, startOfSeason)
     interpretPredictions(predictions)
 
