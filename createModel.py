@@ -6,7 +6,7 @@ from standardizeStats import basicOrAdvancedStatZScore, basicOrAdvancedStatStand
 from getDailyMatchups import dailyMatchups
 from getStats import getStatsForTeam
 from availableStats import availableStats
-
+from configureCWD import setCurrentWorkingDirectory
 
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
@@ -160,7 +160,7 @@ def performLogReg(dataframe):
 def saveModel(model):
 
     # Change to where you want to save the model
-    os.chdir('/Users/JakeKandell/Desktop/NBA-Predict/SavedModels/')
+    setCurrentWorkingDirectory('SavedModels')
 
     filename = 'abc.pkl'
     with open(filename, 'wb') as file:
@@ -173,9 +173,11 @@ def createModel(startYear=None, startMonth=None, startDay=None, endYear=None, en
 
     # allGamesDataframe = createDataFrame(allGames)  # Unnecessary if using data from CSV file
 
-    allGamesDataframe = pd.read_csv('/Users/JakeKandell/Desktop/NBA-Predict/Data/games.csv')  # Should be commented out if needing to obtain data on different range of games
+    setCurrentWorkingDirectory('Data')
+    allGamesDataframe = pd.read_csv('games.csv')  # Should be commented out if needing to obtain data on different range of games
 
     logRegModel = performLogReg(allGamesDataframe)
 
     saveModel(logRegModel)
+
 
