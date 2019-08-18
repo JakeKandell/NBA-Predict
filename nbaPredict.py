@@ -10,9 +10,7 @@ from createModel import createMeanStandardDeviationDicts
 from availableStats import availableStats
 from createModel import zScoreDifferential
 from getStats import getStatsForTeam
-
-# CHANGE CURRENT WORKING DIRECTORY HERE TO WHEREVER THE MODEL IS SAVED
-os.chdir('/Users/JakeKandell/Desktop/NBA-Predict/SavedModels/')
+from configureCWD import setCurrentWorkingDirectory
 
 
 # Returns list of games with Z-Score differentials between teams to be put into a Pandas dataframe
@@ -86,6 +84,8 @@ def interpretPredictions(gamesWithPredictions):
 # currentDate/startOfSeason should be in form 'mm/dd/yyyy' and season in form 'yyyy-yy'
 # Start of 2018-19 season was 10/16/2018
 def makeInterpretPredictions(currentDate, season, startOfSeason):
+
+    setCurrentWorkingDirectory('SavedModels')
 
     print('Predictions for ' + currentDate + ':')
     predictions = predictDailyGames(currentDate, season, startOfSeason)
