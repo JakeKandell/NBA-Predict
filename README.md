@@ -10,12 +10,12 @@ Predicts Daily NBA Games Using a Logistic Regression Model in Python
 ![Screen Shot 2019-08-01 at 5 41 22 PM](https://user-images.githubusercontent.com/24983943/62329326-9977ee00-b483-11e9-9ce3-b9c9cdf78938.png)
 
 # Accuracy Information
-Confusion Matrix
+#### **Confusion Matrix**
   
 ![ConfusionMatrixSmaller](https://user-images.githubusercontent.com/24983943/63641839-c8e4d980-c682-11e9-8c5d-cf04a650e814.png)
 
-Accuracy: 0.7313432835820896
+**Accuracy: 0.73134 (245/335)** 
 
-Precision: 0.7546296296296297
+**Precision: 0.75463**
 
-Recall: 0.815
+**Recall: 0.815**
