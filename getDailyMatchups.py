@@ -6,6 +6,7 @@ from customHeaders import customHeaders
 # Function to get you the games on a specified date (Home vs. Away)
 # Return value is a list where index 0 is a dict holding the games and index 1 is the result of the games
 # Enter a date in the format mm/dd/yyyy and season in the format yyyy-yy
+# If games occurred are occuring in present/future, set past to False
 def dailyMatchups(date, season, past=True):
 
     # Obtains a list of teams who played on specified date
@@ -36,5 +37,3 @@ def dailyMatchups(date, season, past=True):
 
     else:
         return(homeAwayDict)
-
-
