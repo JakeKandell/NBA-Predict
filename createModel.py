@@ -31,7 +31,7 @@ def zScoreDifferential(observedStatHome, observedStatAway, mean, standardDeviati
 
 # Used to combine and format all the data to be put into a pandas dataframe
 # dailyGames should be list where index 0 is a dictionary holding the games and index 1 is a list holding the results
-def infoToDataFrame(dailyGames, meanDict, standardDeviationDict, startDate, endDate):
+def infoToDataFrame(dailyGames, meanDict, standardDeviationDict, startDate, endDate, season):
 
     fullDataFrame = []
     gameNumber = 0  # Counter to match the result of the game with the correct game
@@ -39,8 +39,8 @@ def infoToDataFrame(dailyGames, meanDict, standardDeviationDict, startDate, endD
 
     for homeTeam,awayTeam in dailyGames[0].items():
 
-        homeTeamStats = getStatsForTeam(homeTeam, startDate, endDate)
-        awayTeamStats = getStatsForTeam(awayTeam, startDate, endDate)
+        homeTeamStats = getStatsForTeam(homeTeam, startDate, endDate, season)
+        awayTeamStats = getStatsForTeam(awayTeam, startDate, endDate, season)
 
         currentGame = [homeTeam,awayTeam]
 
@@ -69,17 +69,17 @@ def daterange(startDate, endDate):
 
 
 # Returns a list. Index 0 is a dict holding mean for each stat. Index 1 is a dict holding standard deviation for each stat.
-def createMeanStandardDeviationDicts(startDate, endDate):
+def createMeanStandardDeviationDicts(startDate, endDate, season):
 
     meanDict = {}
     standardDeviationDict = {}
 
     # Loops through and inputs standard deviation and mean for each stat into dict
     for stat, statType in availableStats.items():
-        statMean = basicOrAdvancedStatMean(startDate, endDate, stat, statType)
+        statMean = basicOrAdvancedStatMean(startDate, endDate, stat, statType, season)
         meanDict.update({stat: statMean})
 
-        statStandardDeviation = basicOrAdvancedStatStandardDeviation(startDate, endDate, stat, statType)
+        statStandardDeviation = basicOrAdvancedStatStandardDeviation(startDate, endDate, stat, statType, season)
         standardDeviationDict.update({stat: statStandardDeviation})
 
     bothDicts = []
@@ -89,7 +89,8 @@ def createMeanStandardDeviationDicts(startDate, endDate):
     return bothDicts
 
 # Loops through every date between start and end and appends each game to a singular list to be returned
-def getTrainingSet(startYear, startMonth, startDay, endYear, endMonth, endDay):
+# season should be in format 'yyyy-yy' and startOfSeason should be in format 'mm/dd/yyyy'
+def getTrainingSet(startYear, startMonth, startDay, endYear, endMonth, endDay, season, startOfSeason):
 
     startDate = date(startYear, startMonth, startDay)
     endDate = date(endYear, endMonth, endDay)
@@ -101,14 +102,15 @@ def getTrainingSet(startYear, startMonth, startDay, endYear, endMonth, endDay):
         currentDate = singleDate.strftime("%m/%d/%Y")  # Formats current date in mm/dd/yyyy
         print(currentDate)
 
-        meanAndStandardDeviationDicts = createMeanStandardDeviationDicts('10/16/2018', currentDate)
+        meanAndStandardDeviationDicts = createMeanStandardDeviationDicts(startOfSeason, currentDate, season)
         meanDict = meanAndStandardDeviationDicts[0]  # Dict in format {stat:statMean}
         standardDeviationDict = meanAndStandardDeviationDicts[1]  # Dict in format {stat:statStDev}
 
-        currentDayGames = dailyMatchups(currentDate, '2018-19')  # Finds games on current date in loop
-        currentDayGamesAndStatsList = infoToDataFrame(currentDayGames, meanDict, standardDeviationDict, '10/16/2018', currentDate)  # Formats Z Score difs for games on current date in loop
+        currentDayGames = dailyMatchups(currentDate, season)  # Finds games on current date in loop
+        currentDayGamesAndStatsList = infoToDataFrame(currentDayGames, meanDict, standardDeviationDict, startOfSeason, currentDate, season  )  # Formats Z Score difs for games on current date in loop
 
         for game in currentDayGamesAndStatsList:  # Adds game with stats to list of all games
+            game.append(currentDate)
             allGames.append(game)
 
     print(allGames)
@@ -120,7 +122,7 @@ def createDataFrame(listOfGames):
 
     games = pd.DataFrame(
         listOfGames,
-        columns=['Home', 'Away', 'W_PCT', 'REB', 'TOV', 'PLUS_MINUS', 'OFF_RATING', 'DEF_RATING', 'TS_PCT', 'Result']
+        columns=['Home', 'Away', 'W_PCT', 'REB', 'TOV', 'PLUS_MINUS', 'OFF_RATING', 'DEF_RATING', 'TS_PCT', 'Result', 'Date']
     )
 
     print(games)
@@ -162,22 +164,21 @@ def saveModel(model):
     # Change to where you want to save the model
     setCurrentWorkingDirectory('SavedModels')
 
-    filename = 'abc.pkl'
+    filename = 'model.pkl'  # Change filename here
     with open(filename, 'wb') as file:
         pickle.dump(model, file)
 
+# Used to generate new logistic regression models
+# Can import the statistics and predictions for each game from a csv file or can be created on their own
+def createModel(startYear=None, startMonth=None, startDay=None, endYear=None, endMonth=None, endDay=None, season='2018-19', startOfSeason = '10/16/2018'):
 
-def createModel(startYear=None, startMonth=None, startDay=None, endYear=None, endMonth=None, endDay=None):
-
-    # allGames = getTrainingSet(startYear, startMonth, startDay, endYear, endMonth, endDay)  # Unnecessary if using data from CSV file
+    # allGames = getTrainingSet(startYear, startMonth, startDay, endYear, endMonth, endDay, season, startOfSeason)  # Unnecessary if using data from CSV file
 
     # allGamesDataframe = createDataFrame(allGames)  # Unnecessary if using data from CSV file
 
     setCurrentWorkingDirectory('Data')
-    allGamesDataframe = pd.read_csv('games.csv')  # Should be commented out if needing to obtain data on different range of games
+    allGamesDataframe = pd.read_csv('2018-19GamesWithInfo(NoDate).csv')  # Should be commented out if needing to obtain data on different range of games
 
     logRegModel = performLogReg(allGamesDataframe)
 
     saveModel(logRegModel)
-
-
