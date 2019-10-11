@@ -1,5 +1,8 @@
 # NBA-Predict
+
+
 Predicts Daily NBA Games Using a Logistic Regression Model in Python
+<img align="right" width="75" height="155" src="https://cdn.freebiesupply.com/images/large/2x/nba-logo-transparent.png">
 
 # Model
 The model uses eight factors scraped from stats.nba.com to determine the predicted result of an NBA game. Each stat is adjusted to per 100 possessions to ensure pace has no impact on the predictions.
