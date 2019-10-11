@@ -90,5 +90,6 @@ def makeInterpretPredictions(currentDate, season, startOfSeason):
     predictions = predictDailyGames(currentDate, season, startOfSeason)
     interpretPredictions(predictions)
 
+
 # EDIT THIS
 makeInterpretPredictions('mm/dd/yyyy', 'yyyy-yy', '10/16/2018')
