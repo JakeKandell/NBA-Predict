@@ -7,7 +7,7 @@ import time
 from customHeaders import customHeaders
 
 # Finds league mean for the entered basic or advanced statistic (statType = 'Base' or 'Advanced')
-def basicOrAdvancedStatMean(startDate, endDate, stat,statType = 'Base'):
+def basicOrAdvancedStatMean(startDate, endDate, stat,statType = 'Base', season='2018-19'):
 
     time.sleep(.2)
     # Gets list of dictionaries with stats for every team
@@ -15,6 +15,7 @@ def basicOrAdvancedStatMean(startDate, endDate, stat,statType = 'Base'):
                                                            measure_type_detailed_defense=statType,
                                                            date_from_nullable=startDate,
                                                            date_to_nullable=endDate,
+                                                           season=season,
                                                            headers=customHeaders,
                                                            timeout=120)
     allTeamsDict = allTeamsInfo.get_normalized_dict()
@@ -29,7 +30,7 @@ def basicOrAdvancedStatMean(startDate, endDate, stat,statType = 'Base'):
 
 
 # Finds league standard deviation for the entered basic or advanced statistic (statType = 'Base' or 'Advanced')
-def basicOrAdvancedStatStandardDeviation(startDate, endDate, stat,statType = 'Base'):
+def basicOrAdvancedStatStandardDeviation(startDate, endDate, stat,statType = 'Base', season='2018-19'):
 
     time.sleep(.2)
     # Gets list of dictionaries with stats for every team
@@ -37,6 +38,7 @@ def basicOrAdvancedStatStandardDeviation(startDate, endDate, stat,statType = 'Ba
                                                            measure_type_detailed_defense=statType,
                                                            date_from_nullable=startDate,
                                                            date_to_nullable=endDate,
+                                                           season=season,
                                                            headers=customHeaders,
                                                            timeout=120
                                                            )
