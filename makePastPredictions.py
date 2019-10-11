@@ -88,6 +88,7 @@ def makePastPredictions(startYear, startMonth, startDay, endYear, endMonth, endD
     # Makes probabilities for range of games
     getPredictionsCSV(gameDataFilename, outputFilename)
 
+
 # EDIT THIS
 makePastPredictions(2019, 1, 1, 2019, 4, 10, '2018-19', '10/16/2018',
                     'gamesWithInfo.csv', 'predictions.csv')
