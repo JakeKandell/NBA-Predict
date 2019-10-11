@@ -1,7 +1,6 @@
 # nbaPredict.py - Predicts results of NBA games on a specified date
 # Call makeInterpretPrediction with current date, season, and start date of season to run predictions
 
-import os
 import pickle
 import pandas as pd
 
@@ -15,14 +14,14 @@ from configureCWD import setCurrentWorkingDirectory
 
 # Returns list of games with Z-Score differentials between teams to be put into a Pandas dataframe
 # startDate & endDate should be 'mm/dd/yyyy' form
-def dailyGamesDataFrame(dailyGames, meanDict, standardDeviationDict, startDate, endDate):
+def dailyGamesDataFrame(dailyGames, meanDict, standardDeviationDict, startDate, endDate, season):
 
     fullDataFrame = []
 
     for homeTeam,awayTeam in dailyGames.items():
 
-        homeTeamStats = getStatsForTeam(homeTeam, startDate, endDate)
-        awayTeamStats = getStatsForTeam(awayTeam, startDate, endDate)
+        homeTeamStats = getStatsForTeam(homeTeam, startDate, endDate, season)
+        awayTeamStats = getStatsForTeam(awayTeam, startDate, endDate, season)
 
         currentGame = [homeTeam,awayTeam]
 
@@ -42,8 +41,8 @@ def dailyGamesDataFrame(dailyGames, meanDict, standardDeviationDict, startDate, 
 def predictDailyGames(currentDate, season, startOfSeason):
 
     dailyGames = dailyMatchups(currentDate, season, False)  # False because games should be on current date not in past
-    meanDict, standardDeviationDict = createMeanStandardDeviationDicts(startOfSeason, currentDate)
-    dailyGamesList = dailyGamesDataFrame(dailyGames, meanDict, standardDeviationDict, startOfSeason, currentDate)
+    meanDict, standardDeviationDict = createMeanStandardDeviationDicts(startOfSeason, currentDate, season)
+    dailyGamesList = dailyGamesDataFrame(dailyGames, meanDict, standardDeviationDict, startOfSeason, currentDate, season)
 
     # Pandas dataframe holding daily games and Z-Score differentials between teams
     gamesWithZScoreDifs = pd.DataFrame(
@@ -91,5 +90,5 @@ def makeInterpretPredictions(currentDate, season, startOfSeason):
     predictions = predictDailyGames(currentDate, season, startOfSeason)
     interpretPredictions(predictions)
 
-
+# EDIT THIS
 makeInterpretPredictions('mm/dd/yyyy', 'yyyy-yy', '10/16/2018')
