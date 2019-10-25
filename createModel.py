@@ -3,7 +3,7 @@
 # May need to edit which lines are commented out based on what range of game data you would like to use
 
 from standardizeStats import basicOrAdvancedStatZScore, basicOrAdvancedStatStandardDeviation, basicOrAdvancedStatMean
-from getDailyMatchups import dailyMatchups
+from getDailyMatchups import dailyMatchupsPast
 from getStats import getStatsForTeam
 from availableStats import availableStats
 from configureCWD import setCurrentWorkingDirectory
@@ -106,7 +106,7 @@ def getTrainingSet(startYear, startMonth, startDay, endYear, endMonth, endDay, s
         meanDict = meanAndStandardDeviationDicts[0]  # Dict in format {stat:statMean}
         standardDeviationDict = meanAndStandardDeviationDicts[1]  # Dict in format {stat:statStDev}
 
-        currentDayGames = dailyMatchups(currentDate, season)  # Finds games on current date in loop
+        currentDayGames = dailyMatchupsPast(currentDate, season)  # Finds games on current date in loop
         currentDayGamesAndStatsList = infoToDataFrame(currentDayGames, meanDict, standardDeviationDict, startOfSeason, currentDate, season  )  # Formats Z Score difs for games on current date in loop
 
         for game in currentDayGamesAndStatsList:  # Adds game with stats to list of all games
