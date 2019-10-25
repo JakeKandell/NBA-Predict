@@ -6,7 +6,7 @@ import time
 from customHeaders import customHeaders
 
 # Returns various stats for inputted team in a dictionary
-def getStatsForTeam(team, startDate, endDate, season='2018-19'):
+def getStatsForTeam(team, startDate, endDate, season='2019-20'):
 
     time.sleep(1)
     # Uses NBA_API to access the dictionary holding basic stats for every team per 100 possessions

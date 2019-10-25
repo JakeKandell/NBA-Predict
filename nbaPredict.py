@@ -4,7 +4,7 @@
 import pickle
 import pandas as pd
 
-from getDailyMatchups import dailyMatchups
+from getDailyMatchups import dailyMatchupsPresent
 from createModel import createMeanStandardDeviationDicts
 from availableStats import availableStats
 from createModel import zScoreDifferential
@@ -40,7 +40,7 @@ def dailyGamesDataFrame(dailyGames, meanDict, standardDeviationDict, startDate, 
 # currentDate should be in form 'mm/dd/yyyy' and season in form 'yyyy-yy'
 def predictDailyGames(currentDate, season, startOfSeason):
 
-    dailyGames = dailyMatchups(currentDate, season, False)  # False because games should be on current date not in past
+    dailyGames = dailyMatchupsPresent(currentDate)  # Gets all games for specified date
     meanDict, standardDeviationDict = createMeanStandardDeviationDicts(startOfSeason, currentDate, season)
     dailyGamesList = dailyGamesDataFrame(dailyGames, meanDict, standardDeviationDict, startOfSeason, currentDate, season)
 
@@ -92,4 +92,4 @@ def makeInterpretPredictions(currentDate, season, startOfSeason):
 
 
 # EDIT THIS
-makeInterpretPredictions('mm/dd/yyyy', 'yyyy-yy', '10/16/2018')
+makeInterpretPredictions('mm/dd/yyyy', 'yyyy-yy', '10/22/2019')
