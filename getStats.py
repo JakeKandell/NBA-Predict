@@ -6,6 +6,8 @@ import time
 from customHeaders import customHeaders
 
 # Returns various stats for inputted team in a dictionary
+# team should match team name in teamIds.py
+# startDate and endDate should be in format 'mm/dd/yyyy'
 def getStatsForTeam(team, startDate, endDate, season='2019-20'):
 
     time.sleep(1)
