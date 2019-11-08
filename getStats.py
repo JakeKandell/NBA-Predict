@@ -42,6 +42,3 @@ def getStatsForTeam(team, startDate, endDate, season='2019-20'):
     }
 
     return allStats
-
-
-

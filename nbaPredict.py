@@ -92,4 +92,4 @@ def makeInterpretPredictions(currentDate, season, startOfSeason):
 
 
 # EDIT THIS
-makeInterpretPredictions('mm/dd/yyyy', 'yyyy-yy', '10/22/2019')
+makeInterpretPredictions('11/08/2019', '2019-20', '10/22/2019')

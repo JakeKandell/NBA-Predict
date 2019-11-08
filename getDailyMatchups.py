@@ -43,7 +43,7 @@ def dailyMatchupsPast(date, season):
 def dailyMatchupsPresent(date):
 
     # Obtains all games that are set to occur on specified date
-    dailyMatchups = scoreboard.Scoreboard(league_id='00', game_date=date, headers=customHeaders, timeout=60)
+    dailyMatchups = scoreboard.Scoreboard(league_id='00', game_date=date, headers=customHeaders, timeout=120)
     dailyMatchupsDict = dailyMatchups.get_normalized_dict()
     listOfGames = dailyMatchupsDict['GameHeader']
 
