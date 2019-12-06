@@ -92,4 +92,5 @@ def makeInterpretPredictions(currentDate, season, startOfSeason):
 
 
 # EDIT THIS
+# First arg is date to predict, second is season, and third is start date of season
 makeInterpretPredictions('mm/dd/yyyy', 'yyyy-yy', '10/22/2019')
