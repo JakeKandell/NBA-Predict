@@ -19,7 +19,7 @@ The model uses eight factors scraped from stats.nba.com to determine the predict
 ### **Daily Predictions**
 1. Open nbaPredict.py
 2. Edit the call to makeInterpretPrediction with desired date of games, season, and the start date of the season
-![Screen Shot 2019-10-11 at 1 41 42 AM](https://user-images.githubusercontent.com/24983943/66627099-965a5600-ebc8-11e9-955d-e8dd149634ef.png)
+![NBA-Predict Image](https://user-images.githubusercontent.com/24983943/71434218-7e677e00-26b1-11ea-8a20-cad8d410b251.png)
 3. Wait ~1-3 minutes for model to finish scraping stats and predicting outcomes
 4. Outcomes are outputted as the percent chance that the home team will defeat the away team
 ![Screen Shot 2019-08-01 at 5 41 22 PM](https://user-images.githubusercontent.com/24983943/62329326-9977ee00-b483-11e9-9ce3-b9c9cdf78938.png)
