@@ -81,7 +81,7 @@ def interpretPredictions(gamesWithPredictions):
 
 # Fetches games on set date and returns predictions for each game
 # currentDate/startOfSeason should be in form 'mm/dd/yyyy' and season in form 'yyyy-yy'
-# Start of 2018-19 season was 10/16/2018
+# Start of 2019-20 season was 10/2/2019
 def makeInterpretPredictions(currentDate, season, startOfSeason):
 
     setCurrentWorkingDirectory('SavedModels')
@@ -93,4 +93,4 @@ def makeInterpretPredictions(currentDate, season, startOfSeason):
 
 # EDIT THIS
 # First arg is date to predict, second is season, and third is start date of season
-makeInterpretPredictions('mm/dd/yyyy', 'yyyy-yy', '10/22/2019')
+makeInterpretPredictions('12/25/2019', '2019-20', '10/22/2019')
