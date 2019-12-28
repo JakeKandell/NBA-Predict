@@ -14,8 +14,6 @@ from sklearn import metrics
 import pandas as pd
 import pickle
 
-import os
-
 from datetime import timedelta, date
 
 
@@ -61,6 +59,7 @@ def infoToDataFrame(dailyGames, meanDict, standardDeviationDict, startDate, endD
 
     return(fullDataFrame)
 
+
 # Function that allows iterating through specified start date to end date
 def daterange(startDate, endDate):
 
@@ -88,6 +87,7 @@ def createMeanStandardDeviationDicts(startDate, endDate, season):
 
     return bothDicts
 
+
 # Loops through every date between start and end and appends each game to a singular list to be returned
 # season should be in format 'yyyy-yy' and startOfSeason should be in format 'mm/dd/yyyy'
 def getTrainingSet(startYear, startMonth, startDay, endYear, endMonth, endDay, season, startOfSeason):
@@ -102,12 +102,15 @@ def getTrainingSet(startYear, startMonth, startDay, endYear, endMonth, endDay, s
         currentDate = singleDate.strftime("%m/%d/%Y")  # Formats current date in mm/dd/yyyy
         print(currentDate)
 
-        meanAndStandardDeviationDicts = createMeanStandardDeviationDicts(startOfSeason, currentDate, season)
+        previousDay = singleDate - timedelta(days=1)
+        previousDayFormatted = previousDay.strftime("%m/%d/%Y")
+
+        meanAndStandardDeviationDicts = createMeanStandardDeviationDicts(startOfSeason, previousDayFormatted, season)
         meanDict = meanAndStandardDeviationDicts[0]  # Dict in format {stat:statMean}
         standardDeviationDict = meanAndStandardDeviationDicts[1]  # Dict in format {stat:statStDev}
 
         currentDayGames = dailyMatchupsPast(currentDate, season)  # Finds games on current date in loop
-        currentDayGamesAndStatsList = infoToDataFrame(currentDayGames, meanDict, standardDeviationDict, startOfSeason, currentDate, season  )  # Formats Z Score difs for games on current date in loop
+        currentDayGamesAndStatsList = infoToDataFrame(currentDayGames, meanDict, standardDeviationDict, startOfSeason, previousDayFormatted, season)  # Formats Z Score difs for games on current date in loop
 
         for game in currentDayGamesAndStatsList:  # Adds game with stats to list of all games
             game.append(currentDate)
@@ -167,6 +170,7 @@ def saveModel(model):
     filename = 'model.pkl'  # Change filename here
     with open(filename, 'wb') as file:
         pickle.dump(model, file)
+
 
 # Used to generate new logistic regression models
 # Can import the statistics and predictions for each game from a csv file or can be created on their own

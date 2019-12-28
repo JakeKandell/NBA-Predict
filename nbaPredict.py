@@ -5,9 +5,8 @@ import pickle
 import pandas as pd
 
 from getDailyMatchups import dailyMatchupsPresent
-from createModel import createMeanStandardDeviationDicts
+from createModel import createMeanStandardDeviationDicts, zScoreDifferential
 from availableStats import availableStats
-from createModel import zScoreDifferential
 from getStats import getStatsForTeam
 from configureCWD import setCurrentWorkingDirectory
 

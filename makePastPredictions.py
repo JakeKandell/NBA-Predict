@@ -64,7 +64,7 @@ def getPredictionsCSV(gameDataFilename, outputFilename):
         )
 
         setCurrentWorkingDirectory('Data')
-        predictionsDF.to_csv(outputFilename) # Saves game info with predictions in data folder as csv file
+        predictionsDF.to_csv(outputFilename)  # Saves game info with predictions in data folder as csv file
 
         value = withoutNums.iloc[i,9]
         if value == predictions[i]:
@@ -90,5 +90,5 @@ def makePastPredictions(startYear, startMonth, startDay, endYear, endMonth, endD
 
 
 # EDIT THIS
-makePastPredictions(2019, 1, 1, 2019, 4, 10, '2018-19', '10/16/2018',
+makePastPredictions(2019, 12, 21, 2019, 12, 24, '2019-20', '10/22/2019',
                     'gamesWithInfo.csv', 'predictions.csv')
