@@ -34,10 +34,10 @@ The model uses eight factors scraped from stats.nba.com to determine the predict
 # Accuracy Information
 ### **Confusion Matrix**
   
-![ConfusionMatrixSmaller](https://user-images.githubusercontent.com/24983943/63641839-c8e4d980-c682-11e9-8c5d-cf04a650e814.png)
+![ConfusionMatrix](https://user-images.githubusercontent.com/24983943/71774863-344d8a80-2f44-11ea-8dfa-18cc62796cff.png)
 
-**Accuracy: 0.73134 (245/335)** 
+**Accuracy: 0.7037 (532/756)** 
 
-**Precision: 0.75463**
+**Precision: 0.7367**
 
-**Recall: 0.815**
+**Recall: 0.8065**
