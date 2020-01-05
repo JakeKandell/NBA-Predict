@@ -48,7 +48,7 @@ def infoToDataFrame(dailyGames, meanDict, standardDeviationDict, startDate, endD
 
         if dailyResults[gameNumber] == 'W':  # Sets result to 1 if a win
             result = 1
-        else :  # Sets result to 0 if loss
+        else:  # Sets result to 0 if loss
             result = 0
 
         currentGame.append(result)
@@ -141,7 +141,7 @@ def performLogReg(dataframe):
     X = dataframe[featureColumns] # Features
     Y = dataframe.Result  # Target Variable
 
-    X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.33, shuffle=True)
+    X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.25, shuffle=True)
     logreg = LogisticRegression()
 
     logreg.fit(X_train, Y_train)  # Fits model with data
@@ -149,40 +149,55 @@ def performLogReg(dataframe):
     Y_pred = logreg.predict(X_test)
 
     confusionMatrix = metrics.confusion_matrix(Y_test, Y_pred)  # Diagonals tell you correct predictions
-    print(confusionMatrix)
+
+    # Code below prints model accuracy information
+    print('Coefficient Information:')
+
+    for i in range(len(featureColumns)):  # Prints each feature next to its corresponding coefficient in the model
+
+        logregCoefficients = logreg.coef_
+
+        currentFeature = featureColumns[i]
+        currentCoefficient = logregCoefficients[0][i]
+
+        print(currentFeature + ': ' + str(currentCoefficient))
+
+    print('----------------------------------')
 
     print("Accuracy:", metrics.accuracy_score(Y_test, Y_pred))
     print("Precision:", metrics.precision_score(Y_test, Y_pred))
     print("Recall:", metrics.recall_score(Y_test, Y_pred))
 
-    print(featureColumns)
-    print(logreg.coef_)
+    print('----------------------------------')
+
+    print('Confusion Matrix:')
+    print(confusionMatrix)
 
     return logreg
 
 
 # Saves the model in folder to be used in future
-def saveModel(model):
+# filename should be end in '.pkl'
+def saveModel(model, filename):
 
     # Change to where you want to save the model
     setCurrentWorkingDirectory('SavedModels')
 
-    filename = 'model.pkl'  # Change filename here
     with open(filename, 'wb') as file:
         pickle.dump(model, file)
 
 
 # Used to generate new logistic regression models
 # Can import the statistics and predictions for each game from a csv file or can be created on their own
-def createModel(startYear=None, startMonth=None, startDay=None, endYear=None, endMonth=None, endDay=None, season='2018-19', startOfSeason = '10/16/2018'):
+def createModel(startYear=None, startMonth=None, startDay=None, endYear=None, endMonth=None, endDay=None, season='2018-19', startOfSeason = '10/16/2018', filename='model.pkl'):
 
     # allGames = getTrainingSet(startYear, startMonth, startDay, endYear, endMonth, endDay, season, startOfSeason)  # Unnecessary if using data from CSV file
 
     # allGamesDataframe = createDataFrame(allGames)  # Unnecessary if using data from CSV file
 
     setCurrentWorkingDirectory('Data')
-    allGamesDataframe = pd.read_csv('2018-19GamesWithInfo(NoDate).csv')  # Should be commented out if needing to obtain data on different range of games
+    allGamesDataframe = pd.read_csv('COMBINEDgamesWithInfo2016-2019.csv')  # Should be commented out if needing to obtain data on different range of games
 
     logRegModel = performLogReg(allGamesDataframe)
 
-    saveModel(logRegModel)
+    saveModel(logRegModel, filename)
