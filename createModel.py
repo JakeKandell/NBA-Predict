@@ -196,7 +196,7 @@ def createModel(startYear=None, startMonth=None, startDay=None, endYear=None, en
     # allGamesDataframe = createDataFrame(allGames)  # Unnecessary if using data from CSV file
 
     setCurrentWorkingDirectory('Data')
-    allGamesDataframe = pd.read_csv('COMBINEDgamesWithInfo2016-2019.csv')  # Should be commented out if needing to obtain data on different range of games
+    allGamesDataframe = pd.read_csv('COMBINEDgamesWithInfo2016-19.csv')  # Should be commented out if needing to obtain data on different range of games
 
     logRegModel = performLogReg(allGamesDataframe)
 
