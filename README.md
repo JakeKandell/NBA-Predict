@@ -16,6 +16,13 @@ The model uses eight factors scraped from stats.nba.com to determine the predict
 * True Shooting Percentage
 
 # Usage
+
+### **Installation**
+
+```bash
+pip install -r requirements.txt
+```
+
 ### **Daily Predictions**
 1. Open nbaPredict.py
 2. Edit the call to makeInterpretPrediction with desired date of games, season, and the start date of the season
