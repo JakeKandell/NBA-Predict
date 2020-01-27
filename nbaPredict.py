@@ -5,9 +5,8 @@ import pickle
 import pandas as pd
 
 from getDailyMatchups import dailyMatchupsPresent
-from createModel import createMeanStandardDeviationDicts
+from createModel import createMeanStandardDeviationDicts, zScoreDifferential
 from availableStats import availableStats
-from createModel import zScoreDifferential
 from getStats import getStatsForTeam
 from configureCWD import setCurrentWorkingDirectory
 
@@ -92,5 +91,5 @@ def makeInterpretPredictions(currentDate, season, startOfSeason):
 
 
 # EDIT THIS
-# First arg is date to predict, second is season, and third is start date of season
-makeInterpretPredictions('12/25/2019', '2019-20', '10/22/2019')
+# First arg is date to predict (mm/dd/yyyy), second is season (yyyy-yy), and third is start date of season (mm/dd/yyyy)
+makeInterpretPredictions('01/04/2020', '2019-20', '10/22/2019')

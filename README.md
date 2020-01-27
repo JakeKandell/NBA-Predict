@@ -1,7 +1,7 @@
 # NBA-Predict <img align="right" width="75" height="155" src="https://cdn.freebiesupply.com/images/large/2x/nba-logo-transparent.png">
 
 
-Predicts Daily NBA Games Using a Logistic Regression Model in Python
+Predicts NBA Games Using a Logistic Regression Model in Python
 
 # Model
 The model uses eight factors scraped from stats.nba.com to determine the predicted result of an NBA game. Each stat is adjusted to per 100 possessions to ensure pace has no impact on the predictions.
@@ -16,6 +16,13 @@ The model uses eight factors scraped from stats.nba.com to determine the predict
 * True Shooting Percentage
 
 # Usage
+
+### **Installation**
+
+```bash
+pip install -r requirements.txt
+```
+
 ### **Daily Predictions**
 1. Open nbaPredict.py
 2. Edit the call to makeInterpretPrediction with desired date of games, season, and the start date of the season
@@ -34,10 +41,10 @@ The model uses eight factors scraped from stats.nba.com to determine the predict
 # Accuracy Information
 ### **Confusion Matrix**
   
-![ConfusionMatrixSmaller](https://user-images.githubusercontent.com/24983943/63641839-c8e4d980-c682-11e9-8c5d-cf04a650e814.png)
+![rsz_1confusionmatrix](https://user-images.githubusercontent.com/24983943/71774907-20565880-2f45-11ea-85c2-a4073a0ac7df.png)
 
-**Accuracy: 0.73134 (245/335)** 
+**Accuracy: 0.7037 (532/756)** 
 
-**Precision: 0.75463**
+**Precision: 0.7367**
 
-**Recall: 0.815**
+**Recall: 0.8065**
