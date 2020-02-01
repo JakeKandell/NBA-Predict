@@ -20,7 +20,7 @@ The model uses eight factors scraped from stats.nba.com to determine the predict
 ### **Installation**
 
 ```bash
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 ### **Daily Predictions**
@@ -33,7 +33,7 @@ pip install -r requirements.txt
 
 ### **Past Predictions**
 1. Open makePastPredictions.py
-2. Call makePastPredictions with desired start date, end date, season, start date of the season, and filenames
+2. Call makePastPredictions with desired start date, end date (non-inclusive), season, start date of the season, and filenames
 ![Screen Shot 2019-10-11 at 1 41 42 AM](https://user-images.githubusercontent.com/24983943/66627069-7f1b6880-ebc8-11e9-9a94-981b2fa61f1e.png)
 3. Two CSV files will be saved in the Data folder. One holds the gameData and the other holds the predictions for the games. The time to execute will vary greatly from a couple minutes to a several hours depending on the range between the start and end date.
  
