@@ -30,7 +30,6 @@ pip3 install -r requirements.txt
 3. Run the program either through the terminal or an IDE
 4. Wait ~1-3 minutes for model to finish scraping stats and predicting outcomes
 5. Outcomes are outputted as the percent chance that the home team will defeat the away team
-
 ![Screen Shot 2019-08-01 at 5 41 22 PM](https://user-images.githubusercontent.com/24983943/62329326-9977ee00-b483-11e9-9ce3-b9c9cdf78938.png)
 
 ### **Past Predictions**
