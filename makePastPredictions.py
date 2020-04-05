@@ -88,8 +88,10 @@ def makePastPredictions(startYear, startMonth, startDay, endYear, endMonth, endD
     getPredictionsCSV(gameDataFilename, outputFilename)
 
 
+# start date (yyyy, m, d) (must be at least three days after start of season), end date (yyyy, m, d) (non-inclusive),
+# season(yyyy-yy), start date of season (mm/dd/yyyy), .csv filename for games with z score differences,
+# .csv filename for games with predictions
 # EDIT THIS
-# start date (yyyy, m, d), end date (yyyy, m, d) (non-inclusive), season, start date of season (mm/dd/yyyy), filenames
-makePastPredictions(2020, 1, 4, 2020, 1, 6, '2019-20', '10/22/2019',
+makePastPredictions(2018, 12, 28, 2019, 1, 13, '2018-19', '10/16/2018',
                     'gamesWithInfo.csv', 'predictions.csv')
 
