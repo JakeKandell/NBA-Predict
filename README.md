@@ -34,7 +34,8 @@ pip3 install -r requirements.txt
 
 ### **Past Predictions**
 1. Open makePastPredictions.py
-2. Edit the call to makePastPredictions with desired start date, end date (non-inclusive), season, start date of the season, and output filenames
+2. Edit the call to makePastPredictions with desired start date, end date, season, start date of the season, and output 
+filenames. NOTE: The start date should be at least three days after the season begins and the end date is non-inclusive.
 ![Screen Shot 2019-10-11 at 1 41 42 AM](https://user-images.githubusercontent.com/24983943/66627069-7f1b6880-ebc8-11e9-9a94-981b2fa61f1e.png)
 3. Run the program either through the terminal or an IDE
 4. Two CSV files will be saved in the Data folder. One holds the gameData and the other holds the predictions for the games. The time to execute will vary greatly from a couple minutes to a several hours depending on the range between the start and end date.
