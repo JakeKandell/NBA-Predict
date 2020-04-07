@@ -15,6 +15,7 @@ teams = {
         "Houston Rockets": 1610612745,
         "Indiana Pacers": 1610612754,
         "LA Clippers": 1610612746,
+        "Los Angeles Clippers": 1610612746,
         "Los Angeles Lakers": 1610612747,
         "Memphis Grizzlies": 1610612763,
         "Miami Heat": 1610612748,
